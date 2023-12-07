@@ -5,8 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PolyAxisGraphs"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
+        Title="MainWindow" Height="900" Width="1800">
+    <Grid x:Name="MainGrid" ShowGridLines="True" Margin="5" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" SharedSizeGroup="A"/>
+            <ColumnDefinition Width="*" SharedSizeGroup="A"/>
+            <ColumnDefinition Width="*" SharedSizeGroup="A"/>
+            <ColumnDefinition Width="*" SharedSizeGroup="A"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" SharedSizeGroup="B"/>
+            <RowDefinition Height="*" SharedSizeGroup="B"/>
+            <RowDefinition Height="8*" SharedSizeGroup="B"/>
+        </Grid.RowDefinitions>
+        <Canvas x:Name="canvas" Background="Gainsboro" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Margin="10"/>
+        <RichTextBox x:Name="rtbfile" Grid.Row="0" Grid.Column="0" Margin="10" IsReadOnly="True"/>
+        <Button x:Name="btopenfile" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10" Click="OpenFileBtClick"></Button>
+        <Button x:Name="btopensettings" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right"></Button>
     </Grid>
 </Window>
