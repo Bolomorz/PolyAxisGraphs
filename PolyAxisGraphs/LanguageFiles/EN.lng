@@ -1,0 +1,79 @@
+﻿#Language File for Language <EN>
+#
+#for commenting use # as first character in line
+#attributes in format:		attribute=value
+#value cannot contain '='! (only one separator '=' per line allowed)
+#one attribute per line
+#
+#Button bt
+btGen=Generate Language File
+btSet=Settings
+btSav=Save File
+btRes=Reset
+btAcc=Accept
+btCanc=Cancel
+btGenXLSX=Generate .xlsx
+btGenTXT=Generate .txt
+btCalc=Calculate
+btLang=Set current language
+btDefLang=Set default language
+btDefDir=Set initial directory
+btReset=Reset to default values
+btClose=Close
+btUpd=Update Language File
+#
+#Label lb
+lbChartTitle=Chart Title
+lbPrec=Precision Regressionfunction (0 to 10)
+lbMax=Max Value
+lbMin=Min Value
+lbXValues=X-Values
+lbYValues=Y-Values
+lbYAxisCount=Y-Axis-Count
+lbName=Name
+lbCurrentSeries=Current Series
+lbSelType=Selected Type
+lbWorksheetName=Multiple YAxis Data
+lbLang=Language
+lbDir=Directory
+lbEng=English Value
+lbNew=New Value
+#
+#TextBox tb
+tbDefaultChartTitle=enter title here
+tbCurrentSeries=Current Series
+tbRegressionfunction=Regressionfunction
+#
+#CheckBox cb
+cbEnableGrid=enable/disable grid
+cbActive=Active
+cbFunction=Show Function
+#
+#ListBox lb
+lbNaF=NaF (not a function)
+lbLine=Line
+lbLog=Logarithm
+lbPow=Power
+lbExp=Exponential
+lbPol=Polynomial Order
+#
+#Error er
+erError=Error
+erFileFormat=File Format {0} not supported!
+erOrder1=Error: not enough elements in lists for polynomial of that order.
+erOrder2=order->{0}; elements->{1}!
+erGreen1=Error: fill in every element in ListBox.
+erGreen2=All elements in ListBox have to be green!
+#
+#FileDialog fd
+fdOpen=Open File
+fdSave=Save File
+fdSaved=File Saved
+fdSavedDialog=File was successfully saved in {0}
+#
+#Title tl
+tlRegression=regression
+tlSeries=Series
+tlRegressionFunction=Regressionfunctions
+tlXValues=XValues
+tlYSeries=YSeries
