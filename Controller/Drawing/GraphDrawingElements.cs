@@ -108,6 +108,9 @@ internal class GraphDrawingElements
         var error = CalculateChartAreas();
         if(error is not null) return new ChartData() { ErrorMessage = error };
 
+        AddTitle(Settings.ChartTitleFontSize, GraphData.ChartTitle);
+        AddDate(Settings.ChartFontSize);
+
         error = AddChart(Settings.ChartGridIntervall, GraphData.XMin, GraphData.XMax, Settings.ChartFontSize);
         if(error is not null) return new ChartData() { ErrorMessage = error };
 

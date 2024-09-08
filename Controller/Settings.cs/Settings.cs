@@ -12,7 +12,19 @@ internal static class Settings
     internal static int ChartTitleFontSize = 20;
     internal static int ChartGridIntervall = 20;
     internal static int YAxisWidth = 30;
-    internal static Color[] Colors = {  Avalonia.Media.Colors.Red, Avalonia.Media.Colors.Blue, Avalonia.Media.Colors.Green, Avalonia.Media.Colors.Orange, Avalonia.Media.Colors.Brown, Avalonia.Media.Colors.DarkCyan, Avalonia.Media.Colors.Turquoise, Avalonia.Media.Colors.Purple, Avalonia.Media.Colors.Yellow, Avalonia.Media.Colors.Black};
+    internal static Color[] Colors = 
+    {  
+        Avalonia.Media.Colors.Red, 
+        Avalonia.Media.Colors.Blue, 
+        Avalonia.Media.Colors.Green, 
+        Avalonia.Media.Colors.Orange, 
+        Avalonia.Media.Colors.Brown, 
+        Avalonia.Media.Colors.DarkCyan, 
+        Avalonia.Media.Colors.Turquoise, 
+        Avalonia.Media.Colors.Purple, 
+        Avalonia.Media.Colors.Yellow, 
+        Avalonia.Media.Colors.Black
+    };
 
     internal static void SetSettingsFromFile(string filepath)
     {

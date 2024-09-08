@@ -8,12 +8,9 @@ internal enum FunctionType { [EnumMember]NaF, [EnumMember]Line, [EnumMember]Poly
 [DataContract(Name = "rf", IsReference = true)]
 internal class RegressionFunction
 {
-    [DataMember]
-    internal required double[] Function { get; set; }
-    [DataMember]
-    internal required FunctionType Type { get; set; }
-    [DataMember]
-    internal required bool ShowFunction { get; set; }
+    [DataMember] internal required double[] Function { get; set; }
+    [DataMember] internal required FunctionType Type { get; set; }
+    [DataMember] internal required bool ShowFunction { get; set; }
 
     internal static RegressionFunction NaF = new(){ Function = new[] { double.NaN }, Type = FunctionType.NaF, ShowFunction = false };
 }

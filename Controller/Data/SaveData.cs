@@ -7,43 +7,31 @@ namespace PolyAxisGraphs.Data;
 [DataContract(Name = "sds", IsReference = true)]
 internal struct SaveDataSeries
 {
-    [DataMember]
-    internal string Name { get; set; }
-    [DataMember]
-    internal List<double> X { get; set; }
-    [DataMember]
-    internal List<double> Y { get; set; }
-    [DataMember]
-    internal int Min { get; set; }
-    [DataMember]
-    internal int Max { get; set; }
-    [DataMember]
-    internal int Precision { get; set; }
-    [DataMember]
-    internal double SetMin { get; set; }
-    [DataMember]
-    internal double SetMax { get; set; }
-    [DataMember]
-    internal double Interval { get; set; }
-    [DataMember]
-    internal Color Color { get; set; }
-    [DataMember]
-    internal bool Active { get; set; }
-    [DataMember]
-    internal RegressionFunction Function { get; set; }
+    [DataMember] internal string Name { get; set; }
+    [DataMember] internal List<double> X { get; set; }
+    [DataMember] internal List<double> Y { get; set; }
+    [DataMember] internal int Min { get; set; }
+    [DataMember] internal int Max { get; set; }
+    [DataMember] internal int Precision { get; set; }
+    [DataMember] internal double SetMin { get; set; }
+    [DataMember] internal double SetMax { get; set; }
+    [DataMember] internal double Interval { get; set; }
+    [DataMember] internal Color Color { get; set; }
+    [DataMember] internal bool Active { get; set; }
+    [DataMember] internal RegressionFunction Function { get; set; }
 }
 
 [DataContract(Name = "sdg", IsReference = true)]
 internal struct SaveDataGraphData
 {
-    internal string XAxisName { get; set; }
-    internal string DataFilePath { get; set; }
-    internal string ChartTitle { get; set; }
-    internal double LastX { get; set; }
-    internal int X1 { get; set; }
-    internal int X2 { get; set; }
-    internal int DefX1 { get; set; }
-    internal int DefX2 { get; set; }
+    [DataMember] internal string XAxisName { get; set; }
+    [DataMember] internal string DataFilePath { get; set; }
+    [DataMember] internal string ChartTitle { get; set; }
+    [DataMember] internal double LastX { get; set; }
+    [DataMember] internal int X1 { get; set; }
+    [DataMember] internal int X2 { get; set; }
+    [DataMember] internal int DefX1 { get; set; }
+    [DataMember] internal int DefX2 { get; set; }
 }
 
 [DataContract(Name = "sd", IsReference = true)]
