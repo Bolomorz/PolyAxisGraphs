@@ -7,7 +7,7 @@ using PolyAxisGraphs.Drawing;
 
 namespace PolyAxisGraphs.Data;
 
-internal class Series
+public class Series
 {
     internal List<double> XValues { get; set; }
     internal List<double> YValues { get; set; }

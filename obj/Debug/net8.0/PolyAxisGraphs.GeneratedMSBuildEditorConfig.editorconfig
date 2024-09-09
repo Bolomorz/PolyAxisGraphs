@@ -4,6 +4,8 @@ build_property.AvaloniaNameGeneratorBehavior = InitializeComponent
 build_property.AvaloniaNameGeneratorDefaultFieldModifier = internal
 build_property.AvaloniaNameGeneratorFilterByPath = *
 build_property.AvaloniaNameGeneratorFilterByNamespace = *
+build_property.AvaloniaNameGeneratorViewFileNamingStrategy = NamespaceAndClassName
+build_property.AvaloniaNameGeneratorAttachDevTools = true
 build_property.TargetFramework = net8.0
 build_property.TargetPlatformMinVersion = 
 build_property.UsingMicrosoftNETSdkWeb = 
@@ -20,5 +22,23 @@ build_property.EnableGeneratedComInterfaceComImportInterop =
 [/mnt/LinuxPartition/Repositories/PolyAxisGraphs/PolyAxisGraphs/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[/mnt/LinuxPartition/Repositories/PolyAxisGraphs/PolyAxisGraphs/MainWindow.axaml]
+[/mnt/LinuxPartition/Repositories/PolyAxisGraphs/PolyAxisGraphs/View/ErrorWindow/ErrorWindow.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[/mnt/LinuxPartition/Repositories/PolyAxisGraphs/PolyAxisGraphs/View/MainWindow/MainView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[/mnt/LinuxPartition/Repositories/PolyAxisGraphs/PolyAxisGraphs/View/MainWindow/MainWindow.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[/mnt/LinuxPartition/Repositories/PolyAxisGraphs/PolyAxisGraphs/View/SettingsWindow/RegressionSettingsView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[/mnt/LinuxPartition/Repositories/PolyAxisGraphs/PolyAxisGraphs/View/SettingsWindow/SettingsWindow.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[/mnt/LinuxPartition/Repositories/PolyAxisGraphs/PolyAxisGraphs/View/SettingsWindow/XAxisSettingsView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[/mnt/LinuxPartition/Repositories/PolyAxisGraphs/PolyAxisGraphs/View/SettingsWindow/YAxisSettingsView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

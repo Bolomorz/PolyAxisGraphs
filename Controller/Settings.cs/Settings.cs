@@ -6,7 +6,7 @@ namespace PolyAxisGraphs;
 
 internal static class Settings
 {
-    internal static string InitialDirectory = "DataFiles";
+    internal static string InitialDirectory = "DataFiles/";
     internal static int ControlFontSize = 15;
     internal static int ChartFontSize = 10;
     internal static int ChartTitleFontSize = 20;
