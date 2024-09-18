@@ -132,7 +132,7 @@ public class CanvasGraph
                 double intervall = height / sol.FunctionStrings.Count;
                 foreach (var function in sol.FunctionStrings)
                 {
-                    if (function is not null) DrawFunctionText(function.FunctionStrings, fontsize, ff, left, top, top + intervall, right);
+                    if (function is not null && function.FunctionStrings.Count > 0) DrawFunctionText(function.FunctionStrings, fontsize, ff, left, top, top + intervall, right);
                     top += intervall;
                 }
             }

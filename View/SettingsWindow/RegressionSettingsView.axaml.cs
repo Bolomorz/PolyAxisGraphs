@@ -218,7 +218,7 @@ public partial class RegressionSettingsView : UserControl
                 {
                     var order = CustomConvert.StringToInt(tboorder.Text);
                     var type = (FunctionType)lbselecttype.SelectedItem;
-                    CanvasGraph.GraphData.CalculateRegressionFunction(Series, type, order);
+                    Series.CalculateRegressionFunction(type, order);
                     Series.RegressionFunction.ShowFunction = true;
                     LoadControls();
                     CanvasGraph.ReDraw();

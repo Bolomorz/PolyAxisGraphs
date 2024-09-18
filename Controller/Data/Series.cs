@@ -137,6 +137,32 @@ public class Series
         }
         return new(){FunctionStrings = functions};
     }
+    internal void CalculateRegressionFunction(FunctionType type, int order)
+    {
+        Regression regression = new(XValues, YValues);
+        switch(type)
+        {
+            case FunctionType.Line:
+            RegressionFunction = regression.LinearRegression();
+            break;
+            case FunctionType.Polynomial:
+            RegressionFunction = regression.PolynomialRegression(order);
+            if(double.IsNaN(RegressionFunction.Function[0])) RegressionFunction.Type = FunctionType.NaF;
+            break;
+            case FunctionType.Logarithm:
+            RegressionFunction = regression.LogarithmicRegression();
+            break;
+            case FunctionType.Power:
+            RegressionFunction = regression.PowerRegression();
+            break;
+            case FunctionType.Exponential:
+            RegressionFunction = regression.ExponentialRegression();
+            break;
+            case FunctionType.NaF:
+            RegressionFunction = RegressionFunction.NaF;
+            break;
+        }
+    }
 
     private void SetInterval()
     {

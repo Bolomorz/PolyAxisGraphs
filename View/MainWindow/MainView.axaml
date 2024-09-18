@@ -5,14 +5,15 @@
              mc:Ignorable="d" d:DesignWidth="1800" d:DesignHeight="900"
              x:Class="PolyAxisGraphs.Views.MainView">
 <ScrollViewer HorizontalScrollBarVisibility="Visible">
-    <Grid x:Name="MainGrid" ShowGridLines="True" ColumnDefinitions="*,*,*,*" RowDefinitions="*,*,8*" Width="1800" Height="900">
+    <Grid x:Name="MainGrid" ShowGridLines="False" ColumnDefinitions="*,*,*,*" RowDefinitions="*,*,8*" Width="1800" Height="900">
         <Canvas x:Name="MainCanvas" Background="White" PointerMoved="Canvas_PointerMoved" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="2" Width="1780" Height="700"/>
         <TextBox x:Name="TBFile" TextWrapping="Wrap"  IsReadOnly="True" Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="0" Margin="5"/>
         <Button x:Name="BTOpenFile" Grid.Column="0" Grid.Row="0" Click="OpenFileButtonClick" HorizontalAlignment="Right"/>
+        <Button x:Name="BTOpenSettings" Grid.Column="3" Grid.Row="0" Click="OpenSettingsButtonClick" HorizontalAlignment="Left"/>
 	    <Border BorderThickness="1" BorderBrush="Gainsboro" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5">
 	        <TextBlock x:Name="TBPos"/>
         </Border>
-		<Grid x:Name="ControlsGrid" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="1" Grid.RowSpan="1" ShowGridLines="True" ColumnDefinitions="*,*,*,*,*,*,*,*" RowDefinitions="*,*" Margin="5"/>
+		<Grid x:Name="ControlsGrid" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="1" Grid.RowSpan="1" ShowGridLines="False" ColumnDefinitions="*,*,*,*,*,*,*,*" RowDefinitions="*,*" Margin="5"/>
     </Grid>
 </ScrollViewer>
 </UserControl>

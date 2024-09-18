@@ -11,6 +11,7 @@ using PolyAxisGraphs.Drawing;
 using PolyAxisGraphs.Data;
 using ReactiveUI;
 using System;
+using System.Collections.Generic;
 
 namespace PolyAxisGraphs.Views;
 
@@ -76,7 +77,7 @@ public partial class MainView : UserControl
             BTSave.Content = Language.BtSaveFile;
             BTSave.FontFamily = fontfamily;
             BTSave.FontSize = (double)fontsize;
-            BTSave.Command = ReactiveCommand.Create(() => { SaveFileButtonClick(); });
+            BTSave.Command = ReactiveCommand.Create(SaveFileButtonClick);
             BTSave.HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center;
             BTSave.VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center;
             Grid.SetColumn(BTSave, 0);
@@ -186,7 +187,19 @@ public partial class MainView : UserControl
 
     private void OpenSettingsButtonClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
-        
+        Console.WriteLine("generate");
+        FileGenerator.Series x = new(0, 10, "NM", true);
+        List<FileGenerator.Series> y = new()
+        {
+            new(10, 15, "Volt", false),
+            new(0, 10, "Ampere", false),
+            new(0, 1, "Efficiency", false),
+            new(1000, 10000, "RotationsPerMinute", false),
+            new(0, 150, "Power", false)
+        };
+        FileGenerator.FileGenerator fg = new(x, y, FileGenerator.FileType.txt, InitialDirectory);
+        string result = fg.GenerateData();
+        ErrorWindow.Show(result);
     }
 
     private async void SaveFileButtonClick()

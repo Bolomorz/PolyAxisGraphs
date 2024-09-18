@@ -1,0 +1,2 @@
+NM Volt Ampere Efficiency RotationsPerMinute Power
+0 11 4 0 1234 8

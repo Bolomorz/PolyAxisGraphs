@@ -223,8 +223,10 @@ internal class GraphDrawingElements
         double numintervall = (double)(x2 - x1) / (double)gridintervallcount;
         if(xintervall < 1 || yintervall < fontsize) return string.Format("gridintervall too large to display graph. choose smaller gridintervall.\nAddChart(): yintervall {0}, fontsize {1}, xintervall {2}", yintervall, fontsize, xintervall);
 
-        Point start = new Point() { X = ChartArea.Left, Y = ChartArea.Top};
-        Point end = new Point() { X = ChartArea.Left, Y = ChartArea.Bottom};
+        double xs = ChartArea.Left; double ys = ChartArea.Top;
+        double xe = ChartArea.Left; double ye = ChartArea.Bottom;
+        Point start = new() { X = xs, Y = ys};
+        Point end = new() { X = xe, Y = ye};
         double text = x1;
         AddLine(start, end, Avalonia.Media.Colors.Black, 1);
         if(fontsize > (CanvasHeight - 1) - (end.Y + 1)) fontsize = (CanvasHeight - 1) - (end.Y + 1) - 1;
@@ -232,21 +234,27 @@ internal class GraphDrawingElements
 
         for(int i = 0; i < gridintervallcount; i++)
         {
-            start.X += xintervall;
-            end.X += xintervall;
+            xs += xintervall;
+            xe += xintervall;
+            start = new() { X = xs, Y = ys};
+            end = new() { X = xe, Y = ye};
             text += numintervall;
             AddLine(start, end, Avalonia.Media.Colors.Gray, 0.5);
             AddText(start.X - xintervall/2, start.X + xintervall/2, end.Y + 1, CanvasHeight - 1, text.ToString(), fontsize);
         }
         AddText(ChartArea.Left + ChartArea.Width / 4, ChartArea.Right - ChartArea.Width / 4, ChartArea.Bottom + fontsize + 2, ChartArea.Bottom + (fontsize + 2) * 2, GraphData.XAxisName, fontsize);
 
-        start = new Point() { X = ChartArea.Left, Y = ChartArea.Bottom};
-        end = new Point() { X = ChartArea.Right, Y = ChartArea.Bottom};
+        xs = ChartArea.Left; ys = ChartArea.Bottom;
+        xe = ChartArea.Right; ye = ChartArea.Bottom;
+        start = new() { X = xs, Y = ys};
+        end = new() { X = xe, Y = ye};
         AddLine(start, end, Avalonia.Media.Colors.Black, 1);
         for(int i = 0; i < gridintervallcount; i++)
         {
-            start.Y -= yintervall;
-            end.Y -= yintervall;
+            ys -= yintervall;
+            ye -= yintervall;
+            start = new() { X = xs, Y = ys};
+            end = new() { X = xe, Y = ye};
             AddLine(start, end, Avalonia.Media.Colors.Gray, 0.5);
         }
 
@@ -255,7 +263,7 @@ internal class GraphDrawingElements
     private (Point A, Point B)? CalculateEdgePoints(Point start, Point end)
     {
         //start and end inside chartarea
-        if(start.Y >= ChartArea.Top && start.Y <= ChartArea.Bottom && end.Y >= ChartArea.Top && end.Y <= ChartArea.Bottom) return (start, end);
+        if(start.Y >= ChartArea.Top && start.Y <= ChartArea.Bottom && end.Y >= ChartArea.Top && end.Y <= ChartArea.Bottom) return (new(){X = start.X, Y = start.Y}, new(){X = end.X, Y = end.Y});
 
         //start outside chartarea, end inside chartarea
         else if((start.Y < ChartArea.Top || start.Y > ChartArea.Bottom) && end.Y >= ChartArea.Top && end.Y <= ChartArea.Bottom)
@@ -264,7 +272,7 @@ internal class GraphDrawingElements
             double c = end.Y - m * end.X;
             double y = (start.Y < ChartArea.Top) ? ChartArea.Top : ChartArea.Bottom;
             double x = (y - c) / m;
-            return new(new() { X = x, Y = y}, end);
+            return new(new(){X = x, Y = y}, new(){X = end.X, Y = end.Y});
         }
 
         //end outside chartarea, start inside chartarea
@@ -274,7 +282,7 @@ internal class GraphDrawingElements
             double c = end.Y - m * end.X;
             double y = (end.Y < ChartArea.Top) ? ChartArea.Top : ChartArea.Bottom;
             double x = (y - c) / m;
-            return (start, new() { Y = y, X = x });
+            return (new(){X = start.X, Y = start.Y}, new(){Y = y, X = x});
         }
 
         //start and end outside chartarea
@@ -320,15 +328,18 @@ internal class GraphDrawingElements
 
         //Add Y Axis Grid + Text
         double length = (double)Settings.YAxisWidth/4;
-        start = new() { X = xarea, Y = YAxisArea.Bottom };
-        end = new() { X = xarea + length, Y = YAxisArea.Bottom };
+        double y = YAxisArea.Bottom;
+        start = new() { X = xarea, Y = y };
+        end = new() { X = xarea + length, Y = y };
         double text = Math.Round(series.YSetMin, 2);
         while (start.Y >= YAxisArea.Top)
         {
             AddLine(start, end, series.Color, 0.5);
             AddText(start.X, start.X + length*4, start.Y - fontsize, start.Y, text.ToString(), fontsize);
-            start.Y -= yintervall;
-            end.Y -= yintervall;
+            y -= yintervall;
+            y -= yintervall;
+            start = new() { X = xarea, Y = y };
+            end = new() { X = xarea + length, Y = y };
             text += numintervall;
             text = Math.Round(text, 2);
         }
@@ -404,7 +415,7 @@ internal class GraphDrawingElements
             double xval = x1;
             while (xval <= x2)
             {
-                double yval = GraphData.CalculateYValue(xval, series.RegressionFunction);
+                double yval = series.RegressionFunction.CalculateYValue(xval);
                 if (xval >= x1 && xval <= x2) functionpoints.Add(new() { X = xval, Y = yval });
                 xval += xintervall;
             }

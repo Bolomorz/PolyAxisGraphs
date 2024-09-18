@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PolyAxisGraphs")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dbbb0c006cea075a79274154a2d497d18b440af3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6c1175524429a38f8f9394827e2216999a94dcc4")]
 [assembly: System.Reflection.AssemblyProductAttribute("PolyAxisGraphs")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PolyAxisGraphs")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

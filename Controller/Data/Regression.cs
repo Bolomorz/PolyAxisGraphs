@@ -14,9 +14,9 @@ internal class Regression
         YValues = yvalues;
     }
 
-    internal double[] PolynomialRegression(int order) => RegressionFunction.NaF.Function;
-    internal double[] LinearRegression() => RegressionFunction.NaF.Function;
-    internal double[] PowerRegression() => RegressionFunction.NaF.Function;
-    internal double[] LogarithmicRegression() => RegressionFunction.NaF.Function;
-    internal double[] ExponentialRegression() => RegressionFunction.NaF.Function;
+    internal RegressionFunction PolynomialRegression(int order) => RegressionFunction.NaF;
+    internal RegressionFunction LinearRegression() => RegressionFunction.NaF;
+    internal RegressionFunction PowerRegression() => RegressionFunction.NaF;
+    internal RegressionFunction LogarithmicRegression() => RegressionFunction.NaF;
+    internal RegressionFunction ExponentialRegression() => RegressionFunction.NaF;
 }

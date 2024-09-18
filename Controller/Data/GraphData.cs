@@ -30,55 +30,6 @@ internal class GraphData
         ChartTitle = "";
     }
 
-    internal void CalculateRegressionFunction(Series series, FunctionType type, int order)
-    {
-        Regression regression = new(series.XValues, series.YValues);
-        switch(type)
-        {
-            case FunctionType.Line:
-            series.RegressionFunction = new(){ Function = regression.LinearRegression(), Type = type, ShowFunction = false };
-            break;
-            case FunctionType.Polynomial:
-            series.RegressionFunction = new(){ Function = regression.PolynomialRegression(order), Type = type, ShowFunction = false };
-            if(double.IsNaN(series.RegressionFunction.Function[0])) series.RegressionFunction.Type = FunctionType.NaF;
-            break;
-            case FunctionType.Logarithm:
-            series.RegressionFunction = new(){ Function = regression.LogarithmicRegression(), Type = type, ShowFunction = false };
-            break;
-            case FunctionType.Power:
-            series.RegressionFunction = new(){ Function = regression.PowerRegression(), Type = type, ShowFunction = false };
-            break;
-            case FunctionType.Exponential:
-            series.RegressionFunction = new(){ Function = regression.ExponentialRegression(), Type = type, ShowFunction = false };
-            break;
-            case FunctionType.NaF:
-            series.RegressionFunction = RegressionFunction.NaF;
-            break;
-        }
-    }
-    
-    internal double CalculateYValue(double xvalue, RegressionFunction function)
-    {
-        switch(function.Type)
-        {
-            case FunctionType.Line:
-            return function.Function[0] + function.Function[1] * xvalue;
-            case FunctionType.Polynomial:
-            double exp = 0;
-            double y = 0;
-            foreach(var coeff in function.Function) y += coeff * Math.Pow(xvalue, exp++);
-            return y;
-            case FunctionType.Exponential:
-            return function.Function[0] * Math.Exp(function.Function[1] * xvalue);
-            case FunctionType.Logarithm:
-            return function.Function[0] + function.Function[1] * Math.Log(xvalue);
-            case FunctionType.Power:
-            return function.Function[0] * Math.Pow(xvalue, function.Function[1]);
-            default:
-            return 0;
-        }
-    }
-
     internal void SetChartTitle(string title)
     {
         ChartTitle = title;
