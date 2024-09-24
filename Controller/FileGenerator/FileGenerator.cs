@@ -9,12 +9,12 @@ internal class FileGenerator
 {
     private FileType Type;
     private Series X;
-    private List<Series> Y;
+    private List<Series> Ys;
     private Uri ID;
     internal FileGenerator(Series xseries, List<Series> yseries, FileType type, Uri InitialDirectory)
     {
         X = xseries;
-        Y = yseries;
+        Ys = yseries;
         Type = type;
         ID = InitialDirectory;
     }
@@ -25,7 +25,7 @@ internal class FileGenerator
         while(cont)
         {
             cont = X.AddNextX();
-            if(cont) foreach(var y in Y) y.AddNextY();
+            if(cont) foreach(var y in Ys) y.AddNextY();
         }
         var path = FindNextFileName();
         if(path is not null) SaveFile(path);
@@ -38,14 +38,14 @@ internal class FileGenerator
         using(StreamWriter writer = new(path, append: true))
         {
             string line = "";
-            line += X.Name;
-            foreach(var y in Y) line += separator + y.Name;
+            line += X.Name == X.Unit ? X.Unit : string.Format("{0}[{1}]", X.Name, X.Unit);
+            foreach(var y in Ys) line += y.Unit == y.Name ? separator + y.Name : string.Format("{0}{1}[{2}]", separator, y.Name, y.Unit);
             writer.WriteLine(line);
             for(int i = 0; i < X.Values.Count; i++)
             {
                 line = "";
                 line += X.Values[i].ToString();
-                foreach(var y in Y) line += separator + y.Values[i].ToString();
+                foreach(var y in Ys) line += separator + y.Values[i].ToString();
                 writer.WriteLine(line);
             }
         }

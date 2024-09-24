@@ -17,14 +17,16 @@ public class Series
     internal double YSetMax { get; set; }
     internal double Interval { get; set; }
     internal string Name { get; set; }
+    internal string Unit { get; set; }
     internal  Avalonia.Media.Color Color { get; set; }
     internal bool Active { get; set; }
     internal RegressionFunction RegressionFunction { get; set; }
     internal int Precision { get; set; }
 
-    internal Series(string name,  Avalonia.Media.Color color)
+    internal Series(string name, string unit,  Avalonia.Media.Color color)
     {
         Name = name;
+        Unit = unit;
         Color = color;
         XValues = new();
         YValues = new();

@@ -67,7 +67,7 @@ public class CanvasGraph
             if (GraphData is null) ErrorWindow.Show("error: pag is null -> probably settings file not found");
             else
             { 
-                GraphData.SetFilePath(datafile);
+                GraphData.FileReader.SetFilePath(datafile);
                 GraphData.ReadData();
                 DrawingElements = new GraphDrawingElements(Canvas.Width, Canvas.Height, GraphData);
                 DrawGDE();

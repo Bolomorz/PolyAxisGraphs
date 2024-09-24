@@ -51,7 +51,7 @@ public partial class XAxisSettingsView : UserControl
                 tblname.Height = controlheight;
                 tboname.FontFamily = ff;
                 tboname.FontSize = (int)fs;
-                tboname.Text = CanvasGraph.GraphData.XAxisName;
+                tboname.Text = CanvasGraph.GraphData.ChartData.XAxis.Name;
                 tboname.Width = controlwidth * 3 - 10;
                 tboname.Height = controlheight;
 
@@ -62,7 +62,7 @@ public partial class XAxisSettingsView : UserControl
                 tblmin.Height = controlheight;
                 tbomin.FontFamily = ff;
                 tbomin.FontSize = (int)fs;
-                tbomin.Text = CanvasGraph.GraphData.XMin.ToString();
+                tbomin.Text = CanvasGraph.GraphData.ChartData.XAxis.XMin.ToString();
                 tbomin.Width = controlwidth * 2 - 10;
                 tbomin.Height = controlheight;
                 btmin.FontFamily = ff;
@@ -76,7 +76,7 @@ public partial class XAxisSettingsView : UserControl
                 tblmax.Height = controlheight;
                 tbomax.FontFamily = ff;
                 tbomax.FontSize = (int)fs;
-                tbomax.Text = CanvasGraph.GraphData.XMax.ToString();
+                tbomax.Text = CanvasGraph.GraphData.ChartData.XAxis.XMax.ToString();
                 tbomax.Width= controlwidth * 2 - 10;
                 tbomax.Height = controlheight;
                 btmax.FontFamily = ff;
@@ -97,9 +97,9 @@ public partial class XAxisSettingsView : UserControl
         if (CanvasGraph.GraphData is null) ErrorWindow.Show("error: pag is null -> settings file not found");
         else
         {
-            if (tboname.Text is not null) CanvasGraph.GraphData.XAxisName = tboname.Text; else ErrorWindow.Show("error: tboname.Text is null in XAxisSettingsView");
-            if (tbomin.Text is not null) CanvasGraph.GraphData.XMin = CustomConvert.StringToInt(tbomin.Text); else ErrorWindow.Show("error: tbomin.Text is null in XAxisSettingsView");
-            if (tbomax.Text is not null) CanvasGraph.GraphData.XMax = CustomConvert.StringToInt(tbomax.Text); else ErrorWindow.Show("error: tbomax.Text is null in XAxisSettingsView");
+            if (tboname.Text is not null) CanvasGraph.GraphData.ChartData.XAxis.Name = tboname.Text; else ErrorWindow.Show("error: tboname.Text is null in XAxisSettingsView");
+            if (tbomin.Text is not null) CanvasGraph.GraphData.ChartData.XAxis.XMin = CustomConvert.StringToInt(tbomin.Text); else ErrorWindow.Show("error: tbomin.Text is null in XAxisSettingsView");
+            if (tbomax.Text is not null) CanvasGraph.GraphData.ChartData.XAxis.XMax = CustomConvert.StringToInt(tbomax.Text); else ErrorWindow.Show("error: tbomax.Text is null in XAxisSettingsView");
             if (Parent is not null)
             {
                 CanvasGraph.ReDraw();
@@ -123,12 +123,12 @@ public partial class XAxisSettingsView : UserControl
     private void ClickResetMin(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
         if (CanvasGraph.GraphData is null) ErrorWindow.Show("error: pag is null -> settings file not found");
-        else tbomin.Text = CanvasGraph.GraphData.DefXMin.ToString();
+        else tbomin.Text = CanvasGraph.GraphData.ChartData.XAxis.DefXMin.ToString();
     }
 
     private void ClickResetMax(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
         if (CanvasGraph.GraphData is null) ErrorWindow.Show("error: pag is null -> settings file not found");
-        else tbomax.Text = CanvasGraph.GraphData.DefXMax.ToString();
+        else tbomax.Text = CanvasGraph.GraphData.ChartData.XAxis.DefXMax.ToString();
     }
 }

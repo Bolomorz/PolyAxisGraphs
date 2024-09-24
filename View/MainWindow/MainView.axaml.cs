@@ -1,10 +1,8 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform.Storage;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Diagnostics;
 using System.IO;
 using PolyAxisGraphs.Drawing;
@@ -28,7 +26,7 @@ public partial class MainView : UserControl
     public MainView()
     {
         InitializeComponent();
-        BaseDirectory = new(System.AppDomain.CurrentDomain.BaseDirectory);
+        BaseDirectory = new(AppDomain.CurrentDomain.BaseDirectory);
         InitialDirectory = new(BaseDirectory, Settings.InitialDirectory);
         LanguageDirectory = new(BaseDirectory, "LanguageFiles");
         CheckFileSystem();
@@ -85,7 +83,7 @@ public partial class MainView : UserControl
             ControlsGrid.Children.Add(BTSave);
 
             Button BTXaxis = new Button();
-            BTXaxis.Content = "x: " + CanvasGraph.GraphData.XAxisName;
+            BTXaxis.Content = "x: " + CanvasGraph.GraphData.ChartData.XAxis.Name;
             BTXaxis.FontFamily = fontfamily;
             BTXaxis.FontSize = (double)fontsize;
             BTXaxis.Command = ReactiveCommand.Create(XAxisButtonClick);
@@ -110,7 +108,7 @@ public partial class MainView : UserControl
 
             int col = 2;
             int row = 0;
-            foreach(var series in CanvasGraph.GraphData.Series)
+            foreach(var series in CanvasGraph.GraphData.ChartData.Series)
             {
                 Button BTY = new Button();
                 BTY.Content = "y: " + series.Name;
@@ -187,15 +185,14 @@ public partial class MainView : UserControl
 
     private void OpenSettingsButtonClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
-        Console.WriteLine("generate");
-        FileGenerator.Series x = new(0, 10, "NM", true);
+        FileGenerator.Series x = new(0, 10, "Newtonmeter", "NM", true);
         List<FileGenerator.Series> y = new()
         {
-            new(10, 15, "Volt", false),
-            new(0, 10, "Ampere", false),
-            new(0, 1, "Efficiency", false),
-            new(1000, 10000, "RotationsPerMinute", false),
-            new(0, 150, "Power", false)
+            new(10, 15, "Volt", "V", false),
+            new(0, 10, "Ampere", "A", false),
+            new(0, 1, "Efficiency", "Efficiency", false),
+            new(1000, 10000, "RotationsPerMinute", "RPM", false),
+            new(0, 150, "Power", "W", false)
         };
         FileGenerator.FileGenerator fg = new(x, y, FileGenerator.FileType.txt, InitialDirectory);
         string result = fg.GenerateData();
@@ -265,7 +262,7 @@ public partial class MainView : UserControl
             if(data is not null)
             {
                 var dt = (SeriesData)data;
-                TBPos.Text = string.Format("SeriesPoint: {0} (x={1} [{3}]| y={2} [{0}])", dt.Series.Name, System.Math.Round(dt.SeriesPoint.X, dt.Series.Precision), System.Math.Round(dt.SeriesPoint.Y, dt.Series.Precision), CanvasGraph.GraphData.XAxisName);
+                TBPos.Text = string.Format("SeriesPoint: {0} (x={1} [{3}]| y={2} [{0}])", dt.Series.Name, System.Math.Round(dt.SeriesPoint.X, dt.Series.Precision), System.Math.Round(dt.SeriesPoint.Y, dt.Series.Precision), CanvasGraph.GraphData.ChartData.XAxis.Name);
             }
             else
             {

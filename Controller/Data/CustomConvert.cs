@@ -1,5 +1,3 @@
-using System;
-
 namespace PolyAxisGraphs.Data;
 
 internal static class CustomConvert

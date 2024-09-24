@@ -11,13 +11,15 @@ internal class Series
     internal double Last { get; set; }
     internal bool Direction { get; set; }
     internal string Name { get; set; }
+    internal string Unit { get; set;}
     private Random Random { get; set; }
 
-    internal Series(int min, int max, string name, bool startatmin)
+    internal Series(int min, int max, string name, string unit, bool startatmin)
     {
         Min = min;
         Max = max;
         Name = name;
+        Unit = unit;
         Values = new();
         Random = new();
         Direction = true;

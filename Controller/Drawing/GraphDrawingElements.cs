@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using PolyAxisGraphs.Data;
 
 namespace PolyAxisGraphs.Drawing;
@@ -23,7 +22,7 @@ internal class GraphDrawingElements
         CanvasHeight = canvasheight;
         GraphData = gd;
         SeriesCount = 0;
-        foreach(var series in gd.Series) if(series.Active) SeriesCount++;
+        foreach(var series in gd.ChartData.Series) if(series.Active) SeriesCount++;
         Lines = new();
         Texts = new();
         FunctionStrings = new();
@@ -111,16 +110,16 @@ internal class GraphDrawingElements
         AddTitle(Settings.ChartTitleFontSize, GraphData.ChartTitle);
         AddDate(Settings.ChartFontSize);
 
-        error = AddChart(Settings.ChartGridIntervall, GraphData.XMin, GraphData.XMax, Settings.ChartFontSize);
+        error = AddChart(Settings.ChartGridIntervall, GraphData.ChartData.XAxis.XMin, GraphData.ChartData.XAxis.XMax, Settings.ChartFontSize);
         if(error is not null) return new ChartData() { ErrorMessage = error };
 
         double xarea = YAxisArea.Left;
         double xareaintervall = Settings.YAxisWidth;
-        foreach(var series in GraphData.Series)
+        foreach(var series in GraphData.ChartData.Series)
         {
             if(series.Active)
             {
-                error = AddSeries(series, Settings.ChartGridIntervall, GraphData.XMin, GraphData.XMax, Settings.ChartFontSize, xarea);
+                error = AddSeries(series, Settings.ChartGridIntervall, GraphData.ChartData.XAxis.XMin, GraphData.ChartData.XAxis.XMax, Settings.ChartFontSize, xarea);
                 if(error is not null) return new ChartData() { ErrorMessage = error };
                 xarea += xareaintervall;
             }
@@ -242,7 +241,7 @@ internal class GraphDrawingElements
             AddLine(start, end, Avalonia.Media.Colors.Gray, 0.5);
             AddText(start.X - xintervall/2, start.X + xintervall/2, end.Y + 1, CanvasHeight - 1, text.ToString(), fontsize);
         }
-        AddText(ChartArea.Left + ChartArea.Width / 4, ChartArea.Right - ChartArea.Width / 4, ChartArea.Bottom + fontsize + 2, ChartArea.Bottom + (fontsize + 2) * 2, GraphData.XAxisName, fontsize);
+        AddText(ChartArea.Left + ChartArea.Width / 4, ChartArea.Right - ChartArea.Width / 4, ChartArea.Bottom + fontsize + 2, ChartArea.Bottom + (fontsize + 2) * 2, GraphData.ChartData.XAxis.Unit, fontsize);
 
         xs = ChartArea.Left; ys = ChartArea.Bottom;
         xe = ChartArea.Right; ye = ChartArea.Bottom;
@@ -347,8 +346,9 @@ internal class GraphDrawingElements
         //Add Legend
         start = new() { X = xarea, Y = LegendArea.Bottom };
         end = new() { X = xarea, Y = LegendArea.Top };
+        string name = (series.Name == series.Unit) ? series.Unit : string.Format("{0}[{1}]", series.Name, series.Unit);
         AddLine(start, end, series.Color, 1);
-        AddText(xarea, start.X + length * 4, LegendArea.Top, LegendArea.Bottom, series.Name, fontsize);
+        AddText(xarea, start.X + length * 4, LegendArea.Top, LegendArea.Bottom, name, fontsize);
 
         //Add Functionstring
         var function = series.GetFunction();
