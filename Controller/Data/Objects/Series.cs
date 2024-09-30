@@ -95,8 +95,10 @@ public class Series
             case FunctionType.Exponential:
                 double e1 = Math.Round(RegressionFunction.Function[0], Precision);
                 double e2 = Math.Round(RegressionFunction.Function[1], Precision);
-                str = string.Format("y = {0} * exp({1} * x)", e1, e2);
+                str = string.Format("y = {0} * {1}", e1, e2);
                 functions.Add(new(){Function = str, SuperScript = false, Color = this.Color});
+                str = "x";
+                functions.Add(new(){Function = str, SuperScript = true, Color = this.Color});
                 break;
             case FunctionType.Logarithm:
                 double log1 = Math.Round(RegressionFunction.Function[0], Precision);

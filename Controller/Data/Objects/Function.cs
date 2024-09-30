@@ -27,7 +27,7 @@ internal class RegressionFunction
             foreach(var coeff in Function) y += coeff * Math.Pow(xvalue, exp++);
             return y;
             case FunctionType.Exponential:
-            return Function[0] * Math.Exp(Function[1] * xvalue);
+            return Function[0] * Math.Pow(Function[1], xvalue);
             case FunctionType.Logarithm:
             return Function[0] + Function[1] * Math.Log(xvalue);
             case FunctionType.Power:
